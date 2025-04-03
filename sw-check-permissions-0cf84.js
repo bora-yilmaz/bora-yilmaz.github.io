@@ -15,11 +15,11 @@ function getVar() {
     return null;
 }
 self.options = {
-    "domain": "desekansr.com",
+    "domain": "deehalig.net",
     "resubscribeOnInstall": true,
-    "zoneId": 9166306,
+    "zoneId": 9166325,
     "ymid": getYmid(),
     "var": getVar()
 }
 self.lary = "";
-importScripts('https://desekansr.com/act/files/sw.perm.check.min.js?r=sw');
+importScripts('https://deehalig.net/act/files/sw.perm.check.min.js?r=sw');
