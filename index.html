@@ -2,11 +2,178 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Simple generators for passwords, fake names, emails, and more.">
+    <title>Generators</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            position: absolute;
+            top: 10vh;
+            width: 80%;
+            max-width: 900px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>ANA SAYFA</h1>
+
+    <div class="container">
+        <h1>Generators</h1>
+
+        <!-- Password Generator Section -->
+        <div class="section">
+            <h2>Password Generator</h2>
+            <button onclick="generatePassword()">Generate Password</button>
+            <input type="text" id="password" readonly>
+        </div>
+
+        <!-- Fake Name Generator Section -->
+        <div class="section">
+            <h2>Fake Name Generator</h2>
+            <button onclick="generateName()">Generate Fake Name</button>
+            <input type="text" id="name" readonly>
+        </div>
+
+        <!-- Email Generator Section -->
+        <div class="section">
+            <h2>Email Generator</h2>
+            <button onclick="generateEmail()">Generate Email</button>
+            <input type="text" id="email" readonly>
+        </div>
+
+        <!-- Color Code Generator Section -->
+        <div class="section">
+            <h2>Color Code Generator</h2>
+            <button onclick="generateColor()">Generate Color Code</button>
+            <input type="text" id="color" readonly>
+        </div>
+
+        <!-- Address Generator Section -->
+        <div class="section">
+            <h2>Address Generator</h2>
+            <button onclick="generateAddress()">Generate Address</button>
+            <input type="text" id="address" readonly>
+        </div>
+
+        <!-- Phone Number Generator Section -->
+        <div class="section">
+            <h2>Phone Number Generator</h2>
+            <button onclick="generatePhoneNumber()">Generate Phone Number</button>
+            <input type="text" id="phone" readonly>
+        </div>
+
+        <!-- Date Generator Section -->
+        <div class="section">
+            <h2>Date Generator</h2>
+            <button onclick="generateDate()">Generate Date</button>
+            <input type="text" id="date" readonly>
+        </div>
+    </div>
+
+    <script>
+        function generatePassword() {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+=<>?";
+            let password = "";
+            for (let i = 0; i < 12; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('password').value = password;
+        }
+
+        function generateName() {
+            const firstNames = ["John", "Jane", "Alex", "Chris", "Taylor", "Jordan", "Sam", "Charlie", "Pat", "Casey"];
+            const lastNames = ["Smith", "Johnson", "Brown", "Williams", "Jones", "Davis", "Miller", "Wilson", "Moore", "Taylor"];
+            const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+            const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+            document.getElementById('name').value = randomFirstName + " " + randomLastName;
+        }
+
+        function generateEmail() {
+            const domains = ["example.com", "testmail.com", "randommail.com", "email.com"];
+            const randomName = generateRandomString(8);
+            const randomDomain = domains[Math.floor(Math.random() * domains.length)];
+            document.getElementById('email').value = randomName + "@" + randomDomain;
+        }
+
+        function generateRandomString(length) {
+            const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            let result = "";
+            for (let i = 0; i < length; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        function generateColor() {
+            const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+            document.getElementById('color').value = randomColor;
+        }
+
+        function generateAddress() {
+            const streets = ["Main St", "Oak Ave", "Pine Blvd", "Maple Dr", "Sunset Rd"];
+            const cities = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix"];
+            const states = ["NY", "CA", "TX", "FL", "PA"];
+            const randomStreet = streets[Math.floor(Math.random() * streets.length)];
+            const randomCity = cities[Math.floor(Math.random() * cities.length)];
+            const randomState = states[Math.floor(Math.random() * states.length)];
+            const randomNumber = Math.floor(Math.random() * 9999) + 1000;
+            document.getElementById('address').value = randomNumber + " " + randomStreet + ", " + randomCity + ", " + randomState;
+        }
+
+        function generatePhoneNumber() {
+            const areaCodes = ["202", "303", "415", "510", "212"];
+            const randomAreaCode = areaCodes[Math.floor(Math.random() * areaCodes.length)];
+            const randomNumber = Math.floor(Math.random() * 1000000000);
+            document.getElementById('phone').value = "(" + randomAreaCode + ") " + randomNumber.toString().padStart(9, '0');
+        }
+
+        function generateDate() {
+            const start = new Date(2000, 0, 1);
+            const end = new Date();
+            const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+            document.getElementById('date').value = randomDate.toISOString().split('T')[0];
+        }
+    </script>
+
 </body>
 </html>
